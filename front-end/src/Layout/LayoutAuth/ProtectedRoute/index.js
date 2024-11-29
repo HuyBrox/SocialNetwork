@@ -7,7 +7,7 @@ export default function ProtectedRoute({ children }) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/', {
+        const response = await fetch('https://s1-api.vercel.app/api/user/', {
           method: 'POST',
           credentials: 'include', // Gửi cookie trong request
         });

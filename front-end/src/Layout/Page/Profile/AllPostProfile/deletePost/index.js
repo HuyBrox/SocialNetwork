@@ -7,7 +7,7 @@ const DeletePost = ({ isOpen, onClose, postId, onDelete }) => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/deletePost/${postId}`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/post/deletePost/${postId}`, {
         method: 'DELETE',
         credentials: 'include'
       });

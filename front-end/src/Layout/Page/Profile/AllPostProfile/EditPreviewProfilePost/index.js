@@ -7,7 +7,7 @@ export default function EditPreviewProfilePost({ onClose, postId, onDelete, isOw
   const handleDelete = async () => {
     try {
       setIsDeleting(true);
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/deletePost/${postId}`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/post/deletePost/${postId}`, {
         method: 'DELETE',
         credentials: 'include'
       });

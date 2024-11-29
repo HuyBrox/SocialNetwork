@@ -6,7 +6,7 @@ let socketInstance = null;
 export const socketService = {
   init(userId, dispatch) {
     if (!socketInstance) {
-      socketInstance = io('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app', {
+      socketInstance = io('https://s1-api.vercel.app', {
         query: { userId },
         autoConnect: true,
         reconnection: true,

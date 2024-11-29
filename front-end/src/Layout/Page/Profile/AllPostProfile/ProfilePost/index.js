@@ -26,7 +26,7 @@ const ProfilePost = ({ profilePicture, username, myUserId, youUserId, isOwnProfi
         const targetUserId = userId || myUserId;
         if (!targetUserId) throw new Error('User ID not found');
 
-        const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/getUserPost/${targetUserId}`, {
+        const response = await fetch(`https://s1-api.vercel.app/api/post/getUserPost/${targetUserId}`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -67,7 +67,7 @@ const ProfilePost = ({ profilePicture, username, myUserId, youUserId, isOwnProfi
   const fetchGetPost = async (id) => {
     try {
       // Fetch post details
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/getPost/${id}`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/post/getPost/${id}`, {
         method: 'GET',
         credentials: 'include',
       });

@@ -25,8 +25,8 @@ const LikeUnlike = ({ postId, initialLikeStatus = false, initialLikeCount = 0, o
     try {
       setIsLoading(true);
       const endpoint = isLiked
-        ? `https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/unLikePost/${postId}`
-        : `https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/likePost/${postId}`;
+        ? `https://s1-api.vercel.app/api/post/unLikePost/${postId}`
+        : `https://s1-api.vercel.app/api/post/likePost/${postId}`;
 
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -59,7 +59,7 @@ const LikeUnlike = ({ postId, initialLikeStatus = false, initialLikeCount = 0, o
 
     try {
       setIsBookmarkLoading(true);
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/bookmarkPost/${postId}`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/post/bookmarkPost/${postId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

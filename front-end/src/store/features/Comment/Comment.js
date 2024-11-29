@@ -5,7 +5,7 @@ export const fetchPosts = createAsyncThunk(
   'comments/fetchPosts',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/getUserPost/${userId}`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/post/getUserPost/${userId}`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -39,7 +39,7 @@ export const fetchComments = createAsyncThunk(
       }
 
       const response = await fetch(
-        `https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/comment/${postId}?sortType=${sortType}`,
+        `https://s1-api.vercel.app/api/comment/${postId}?sortType=${sortType}`,
         {
           method: 'GET',
           credentials: 'include',
@@ -153,7 +153,7 @@ export const addComment = createAsyncThunk(
 
     try {
       const response = await fetch(
-        `https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/comment/${postId}`,
+        `https://s1-api.vercel.app/api/comment/${postId}`,
         {
           method: 'POST',
           headers: {
@@ -200,7 +200,7 @@ export const replyComment = createAsyncThunk(
 
     try {
       const response = await fetch(
-        `https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/comment/reply/${postId}/${commentId}`,
+        `https://s1-api.vercel.app/api/comment/reply/${postId}/${commentId}`,
         {
           method: 'POST',
           headers: {

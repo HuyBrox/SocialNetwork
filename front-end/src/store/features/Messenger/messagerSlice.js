@@ -35,7 +35,7 @@ export const connectSocket = createAsyncThunk(
 export const fetchConversationList = createAsyncThunk(
   'messenger/fetchConversationList',
   async () => {
-    const response = await fetch('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/message/person', {
+    const response = await fetch('https://s1-api.vercel.app/api/message/person', {
       method: 'GET',
       credentials: 'include'
     });
@@ -50,7 +50,7 @@ export const fetchConversationList = createAsyncThunk(
 export const fetchMessages = createAsyncThunk(
   'messenger/fetchMessages',
   async (userId) => {
-    const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/message/getMess/${userId}`, {
+    const response = await fetch(`https://s1-api.vercel.app/api/message/getMess/${userId}`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -67,7 +67,7 @@ export const sendMessage = createAsyncThunk(
   'messenger/sendMessage',
   async ({ receiverId, message, tempMessageId }, { getState, dispatch }) => {
     try {
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/message/send/${receiverId}`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/message/send/${receiverId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

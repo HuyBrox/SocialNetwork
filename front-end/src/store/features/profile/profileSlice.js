@@ -22,7 +22,7 @@ export const fetchProfileData = createAsyncThunk(
         throw new Error('User ID not found');
       }
 
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/${youUserId}/profile`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/user/${youUserId}/profile`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -59,7 +59,7 @@ export const updateProfile = createAsyncThunk(
       // Map giá trị gender từ UI sang giá trị API
       const mappedGender = gender === 'Nữ' ? 'female' : 'male';
 
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/profile/edit`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/user/profile/edit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ export const uploadProfilePicture = createAsyncThunk(
     formData.append('profilePicture', file);
 
     try {
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/profile/edit`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/user/profile/edit`, {
         method: 'POST',
         body: formData,
         credentials: 'include',
@@ -120,14 +120,14 @@ export const removeProfilePicture = createAsyncThunk(
   'profile/removeProfilePicture',
   async ({ userId }, { rejectWithValue }) => {
     try {
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/deleteAvatar`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/user/deleteAvatar`, {
         method: 'DELETE',
         credentials: 'include',
       });
 
       const data = await response.json();
       if (data.success) {
-        const profileResponse = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/${userId}/profile`, {
+        const profileResponse = await fetch(`https://s1-api.vercel.app/api/user/${userId}/profile`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -152,7 +152,7 @@ export const sendOtp = createAsyncThunk(
   'profile/sendOtp',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/sendOtp', {
+      const response = await fetch('https://s1-api.vercel.app/api/user/sendOtp', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -177,7 +177,7 @@ export const verifyCurrentPassword = createAsyncThunk(
   'profile/verifyCurrentPassword',
   async ({ currentPassword }, { rejectWithValue }) => {
     try {
-      const response = await fetch('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/changePassword', {
+      const response = await fetch('https://s1-api.vercel.app/api/user/changePassword', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -208,7 +208,7 @@ export const changePassword = createAsyncThunk(
   'profile/changePassword',
   async ({ currentPassword, newPassword, otp }, { rejectWithValue }) => {
     try {
-      const response = await fetch('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/changePassword', {
+      const response = await fetch('https://s1-api.vercel.app/api/user/changePassword', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

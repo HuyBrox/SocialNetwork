@@ -6,7 +6,7 @@ export const fetchUserPosts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     const targetUserId = localStorage.getItem('_id');
     try {
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/getUserPost/${targetUserId}`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/post/getUserPost/${targetUserId}`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -38,7 +38,7 @@ export const fetchGetPost = createAsyncThunk(
   'newPost/fetchGetPost',
   async ({ postId }, { rejectWithValue, getState }) => {
     try {
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/getPost/${postId}`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/post/getPost/${postId}`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -79,7 +79,7 @@ export const toggleLike = createAsyncThunk(
   'newPost/toggleLike',
   async ({ postId }, { rejectWithValue, getState }) => {
     try {
-      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/${postId}/like`, {
+      const response = await fetch(`https://s1-api.vercel.app/api/post/${postId}/like`, {
         method: 'PUT',
         credentials: 'include',
       });
