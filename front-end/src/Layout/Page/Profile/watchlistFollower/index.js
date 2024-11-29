@@ -26,7 +26,7 @@ const FollowerModal = ({
   // Fetch followers list
   const fetchUsers = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/user/followers/${youUserId || myUserId}`, {
+      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/followers/${youUserId || myUserId}`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -35,7 +35,7 @@ const FollowerModal = ({
 
       const data = await response.json();
       if (data.success) {
-        const myFollowingResponse = await fetch(`http://localhost:5000/api/user/following/${myUserId}`, {
+        const myFollowingResponse = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/following/${myUserId}`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -47,7 +47,7 @@ const FollowerModal = ({
 
         const mutualFollowStates = {};
         for (const user of data.followers) {
-          const userFollowingResponse = await fetch(`http://localhost:5000/api/user/following/${user._id}`, {
+          const userFollowingResponse = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/following/${user._id}`, {
             method: 'GET',
             credentials: 'include',
           });
@@ -93,7 +93,7 @@ const FollowerModal = ({
   const handleConfirmUnfollow = async () => {
     setIsUnfollowing(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/user/follower/${selectedUserId}`, {
+      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/follower/${selectedUserId}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {

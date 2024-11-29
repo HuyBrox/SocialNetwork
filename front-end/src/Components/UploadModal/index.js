@@ -105,7 +105,7 @@ const UploadModal = ({ isOpen, onClose, onUploadSuccess, profilePicture, usernam
           formData.append('caption', caption);
         }
 
-        const response = await fetch('http://localhost:5000/api/post/newPost', {
+        const response = await fetch('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/post/newPost', {
           method: 'POST',
           credentials: 'include',
           body: formData,

@@ -65,7 +65,7 @@ export default function LoginRegister() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/user/login', {
+      const response = await fetch('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export default function LoginRegister() {
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/user/register', {
+      const response = await fetch('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

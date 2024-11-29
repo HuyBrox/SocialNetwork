@@ -102,7 +102,7 @@ export default function LayoutDefault() {
         throw new Error('User ID not found');
       }
 
-      const response = await fetch(`http://localhost:5000/api/user/${id}/profile`, {
+      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/${id}/profile`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -171,7 +171,7 @@ export default function LayoutDefault() {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/user/logout', {
+      const response = await fetch('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/logout', {
         method: 'GET',
         credentials: 'include',
       });

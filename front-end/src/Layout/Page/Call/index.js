@@ -23,7 +23,7 @@ function Call() {
         if (!userId) return;
 
         if (!socketRef.current) {
-            socketRef.current = io('http://localhost:5000', {
+            socketRef.current = io('https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app', {
                 query: { userId },
                 autoConnect: true,
             });

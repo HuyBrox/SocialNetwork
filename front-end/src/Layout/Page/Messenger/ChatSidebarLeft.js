@@ -25,7 +25,7 @@ export const ChatSidebarLeft = ({
   // Fetch messages for all conversations
   const fetchAllMessages = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/message/getMess/${userId}`, {
+      const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/message/getMess/${userId}`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -91,7 +91,7 @@ export const ChatSidebarLeft = ({
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/message/Search?keyword=${encodeURIComponent(keyword)}`,
+        `https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/message/Search?keyword=${encodeURIComponent(keyword)}`,
         {
           method: 'GET',
           credentials: 'include'

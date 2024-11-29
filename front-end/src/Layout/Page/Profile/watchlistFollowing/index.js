@@ -19,7 +19,7 @@ const FollowingModal = ({
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/user/following/${targetUserId || currentUserId}`, {
+        const response = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/following/${targetUserId || currentUserId}`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -30,7 +30,7 @@ const FollowingModal = ({
 
         const data = await response.json();
         if (data.success) {
-          const currentUserFollowingResponse = await fetch(`http://localhost:5000/api/user/following/${currentUserId}`, {
+          const currentUserFollowingResponse = await fetch(`https://s1-i3hduvma4-huy-s-projects-492df757.vercel.app/api/user/following/${currentUserId}`, {
             method: 'GET',
             credentials: 'include',
           });
