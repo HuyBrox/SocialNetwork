@@ -65,6 +65,7 @@ export default function LoginRegister() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
+      //https://s1-api.vercel.app
       const response = await fetch('https://s1-api.vercel.app/api/user/login', {
         method: 'POST',
         headers: {
