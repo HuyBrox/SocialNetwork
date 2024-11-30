@@ -62,32 +62,77 @@ export default function LoginRegister() {
     });
   };
 
-  const handleLoginSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      //https://s1-api.vercel.app
-      const response = await fetch('https://s1-api.vercel.app/api/user/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginUser),
-        credentials: 'include',
-      });
+  // const handleLoginSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     //https://s1-api.vercel.app
+  //     const response = await fetch('https://s1-api.vercel.app/api/user/login', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`,  // Thêm token vào header
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify(loginUser),
+  //       credentials: 'include',
+  //     });
 
-      const data = await response.json();
-      if (!response.ok) {
-        setLoginError(data.message);
-      } else {
-        localStorage.setItem('username', data.user.username);
-        localStorage.setItem('_id', data.user._id);
-        setLoginError('');
-        navigate("/");
-      }
-    } catch (error) {
-      setLoginError('Đã xảy ra lỗi, vui lòng thử lại!');
+  //     const data = await response.json();
+  //     if (!response.ok) {
+  //       setLoginError(data.message);
+  //     } else {
+  //       localStorage.setItem('username', data.user.username);
+  //       localStorage.setItem('_id', data.user._id);
+  //       setLoginError('');
+  //       navigate("/");
+  //     }
+  //   } catch (error) {
+  //     setLoginError('Đã xảy ra lỗi, vui lòng thử lại!');
+  //   }
+  // };
+  const handleLoginSubmit = async (e) => {
+  e.preventDefault();
+
+  // Lấy token từ cookie
+  const token = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('token='))
+    ?.split('=')[1];
+
+  if (!token) {
+    setLoginError('Không tìm thấy token. Vui lòng đăng nhập lại.');
+    return;
+  }
+
+  try {
+    const response = await fetch('https://s1-api.vercel.app/api/user/login', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,  // Gắn token từ cookie vào header
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(loginUser),
+      credentials: 'include',  // Đảm bảo gửi cookie cùng request
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      // Xử lý lỗi trả về từ API
+      setLoginError(data.message || 'Đăng nhập không thành công.');
+    } else {
+      // Lưu thông tin người dùng vào localStorage
+      localStorage.setItem('username', data.user.username);
+      localStorage.setItem('_id', data.user._id);
+      setLoginError('');
+      navigate("/");  // Chuyển hướng sau khi đăng nhập thành công
     }
-  };
+  } catch (error) {
+    // Xử lý lỗi từ phía client hoặc network
+    console.error('Error during login:', error);
+    setLoginError('Đã xảy ra lỗi, vui lòng thử lại!');
+  }
+};
+
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
