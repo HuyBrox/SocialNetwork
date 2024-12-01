@@ -13,7 +13,7 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 // Cấu hình CORS
 const corsOptions = {
-    origin: ['https://social-network-client2.vercel.app'],
+    origin: ['https://social-network-client2.vercel.app','https://social-network-client2-afhz500ut-huy-s-projects-492df757.vercel.app'],
     credentials: true,
 };
 app.use(cors(corsOptions));
