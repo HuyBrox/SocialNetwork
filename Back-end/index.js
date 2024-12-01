@@ -11,7 +11,12 @@ import { ExpressPeerServer } from "peer"; // Import PeerServer
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
-
+// Cấu hình CORS
+const corsOptions = {
+    origin: ['http://localhost:3000', 'https://social-network-client-coral.vercel.app'],
+    credentials: true,
+};
+app.use(cors());
 // Endpoint kiểm tra kết nối server
 app.get("/", (req, res) => {
     return res.status(200).json({
@@ -25,12 +30,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({ extended: true }));
 
-// Cấu hình CORS
-const corsOptions = {
-    origin: ['http://localhost:3000', 'https://social-network-client-coral.vercel.app'],
-    credentials: true,
-};
-app.use(cors());
+
 
 // Tích hợp PeerServer vào Express
 const peerServer = ExpressPeerServer(server, {
