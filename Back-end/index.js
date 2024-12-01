@@ -13,10 +13,10 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 // Cấu hình CORS
 const corsOptions = {
-    origin: ['http://localhost:3000', 'https://social-network-client-coral.vercel.app'],
+    origin: ['https://social-network-client2.vercel.app'],
     credentials: true,
 };
-app.use(cors());
+app.use(cors(corsOptions));
 // Endpoint kiểm tra kết nối server
 app.get("/", (req, res) => {
     return res.status(200).json({
