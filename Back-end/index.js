@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(urlencoded({ extended: true }));
 
 
-
+await connectDB();
 // Tích hợp PeerServer vào Express
 const peerServer = ExpressPeerServer(server, {
     debug: true,       // Hiển thị thông tin debug
@@ -55,6 +55,6 @@ app.use("/api", indexRouter);
 
 // Kết nối database và khởi động server
 server.listen(PORT, async () => {
-    await connectDB();
+    
     console.log(`Server is running on port ${PORT}`);
 });
