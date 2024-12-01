@@ -90,7 +90,7 @@ const Profile = () => {
     validateAndSetUserId();
   }, [userId, navigate]);
 
-  //  useEffect fetch profile
+   //  useEffect fetch profile
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true);
@@ -99,24 +99,18 @@ const Profile = () => {
         const youUserId = userId || myUserId;
 
         // Kiểm tra ID hợp lệ trước khi fetch
-        if (!isValidObjectId(youUserId)) {
-          throw new Error('Invalid User ID');
-        }
-
         if (!youUserId) {
           throw new Error('User ID not found');
         }
 
-        // Nếu postId không tồn tại trong params URL, điều hướng đến /p/{postId}
-        if (!userId && postId) {
-          navigate(`/error404`, { replace: true });
-          return;
-        }
-
+        // Chỉ fetch nếu profile chưa được lấy hoặc khi userId khác với myUserId
         if (!hasFetchedProfile.current && (userId || youUserId !== myUserId)) {
-          const response = await fetch(`https://s1-api.vercel.app/api/user/${youUserId}/profile`, {
+          const response = await fetch(`${config.API_HOST}/api/user/${youUserId}/profile`, {
             method: 'GET',
             credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
           });
 
           if (!response.ok) {
@@ -125,20 +119,19 @@ const Profile = () => {
               navigate('/error404', { replace: true });
               return;
             }
-            throw new Error('Could not fetch profile data.');
+            throw new Error(errorData.message || 'Could not fetch profile data.');
           }
 
           const data = await response.json();
-          // console.log(data);
+
           if (data.success) {
             setProfileData(data.user);
             setFollowStats({
               followers: data.user.followers || [],
-              following: data.user.following || []
+              following: data.user.following || [],
             });
             setPosts(data.user.posts || []);
             setFeaturedNote(data.user.featuredNote?.content || data.user.featuredNote || '');
-
             setBio(data.user.bio || '');
 
             const isCurrentlyFollowing = data.user.followers.includes(myUserId);
@@ -151,21 +144,18 @@ const Profile = () => {
           }
         }
       } catch (error) {
+        console.error('Error fetching profile:', error);
         setError(error.message);
-        if (postId) {
-          navigate(`/error404`, { replace: true });
-          return;
-        }
         navigate('/error404', { replace: true });
       } finally {
         setLoading(false);
       }
     };
 
-    if ((userId || myUserId)) {
+    if (userId || localStorage.getItem('_id')) {
       fetchProfile();
     }
-  }, [userId, postId, navigate, myUserId]);
+  }, [userId, postId, navigate]);
 
   // Giữ nguyên useEffect kiểm tra URL `/profile`
   useEffect(() => {
