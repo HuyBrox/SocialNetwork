@@ -4,7 +4,8 @@ import Logo from '../../../assets/images/logo192.png';
 import './testlogin.css';
 import { RegisterForm } from './RegisterForm';
 import { LoginForm } from './LoginForm';
-
+import Cookies from 'js-cookie';
+import { Cookie } from 'lucide-react';
 export default function LoginRegister() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -63,11 +64,11 @@ export default function LoginRegister() {
   };
 
   const handleLoginSubmit = async (e) => {
-    
+
     e.preventDefault();
     try {
       //https://s1-api.vercel.app
-      const response = await fetch('https://s1-api.vercel.app/api/user/login', {
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/user/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -82,6 +83,7 @@ export default function LoginRegister() {
       } else {
         localStorage.setItem('username', data.user.username);
         localStorage.setItem('_id', data.user._id);
+        Cookies.set('token', data.token, { expires: 7 });
         setLoginError('');
         navigate("/");
       }
@@ -89,13 +91,13 @@ export default function LoginRegister() {
       setLoginError('Đã xảy ra lỗi, vui lòng thử lại!');
     }
   };
-  
+
 
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://s1-api.vercel.app/api/user/register', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

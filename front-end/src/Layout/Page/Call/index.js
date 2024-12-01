@@ -23,7 +23,7 @@ function Call() {
         if (!userId) return;
 
         if (!socketRef.current) {
-            socketRef.current = io('https://s1-api.vercel.app', {
+            socketRef.current = io(`${process.env.REACT_APP_SOCKET_URL}`, {
                 query: { userId },
                 autoConnect: true,
             });

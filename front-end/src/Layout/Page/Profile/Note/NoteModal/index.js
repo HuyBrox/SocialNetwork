@@ -53,7 +53,7 @@ const NoteModal = ({ isOpen, onClose, currentNote, onSave, profileData }) => {
       }
 
       // Gọi API
-      const response = await fetch('https://s1-api.vercel.app/api/user/featuredNote', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/featuredNote`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

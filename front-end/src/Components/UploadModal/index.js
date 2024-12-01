@@ -105,7 +105,7 @@ const UploadModal = ({ isOpen, onClose, onUploadSuccess, profilePicture, usernam
           formData.append('caption', caption);
         }
 
-        const response = await fetch('https://s1-api.vercel.app/api/post/newPost', {
+        const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/post/newPost', {
           method: 'POST',
           credentials: 'include',
           body: formData,

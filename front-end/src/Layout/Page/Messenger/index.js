@@ -28,7 +28,7 @@ const MessengerLayout = () => {
 
     const connectSocket = () => {
       try {
-        const newSocket = io('https://s1-api.vercel.app', {
+        const newSocket = io(`${process.env.REACT_APP_SOCKET_URL}`, {
           query: { userId: myUserId },
           autoConnect: true,
           // transports: ['websocket'],
@@ -114,7 +114,7 @@ const MessengerLayout = () => {
 
   const fetchUserStatuses = async () => {
     try {
-      const response = await fetch('https://s1-api.vercel.app/api/message/person', {
+      const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/message/person', {
         method: 'GET',
         credentials: 'include'
       });
@@ -173,7 +173,7 @@ const MessengerLayout = () => {
     }));
 
     try {
-      const response = await fetch(`https://s1-api.vercel.app/api/message/send/${receiverId}`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/message/send/${receiverId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -255,7 +255,7 @@ const MessengerLayout = () => {
   // Thêm function này sau các function hiện có
   const fetchConversationList = async () => {
     try {
-      const response = await fetch('https://s1-api.vercel.app/api/message/person', {
+      const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/message/person', {
         method: 'GET',
         credentials: 'include'
       });
@@ -494,7 +494,7 @@ const MessengerLayout = () => {
   // Lấy thông tin người dùng
   const fetchUserInfo = async (userId) => {
     try {
-      const response = await fetch(`https://s1-api.vercel.app/api/message/getMess/${userId}`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/message/getMess/${userId}`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -517,7 +517,7 @@ const MessengerLayout = () => {
   const fetchMessages = async (userId) => {
     try {
       setLoading(true);
-      const response = await fetch(`https://s1-api.vercel.app/api/message/getMess/${userId}`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/message/getMess/${userId}`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -624,7 +624,7 @@ const MessengerLayout = () => {
     }));
 
     try {
-      const response = await fetch(`https://s1-api.vercel.app/api/message/send/${receiverId}`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/message/send/${receiverId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -737,7 +737,7 @@ const MessengerLayout = () => {
 
     try {
       const response = await fetch(
-        `https://s1-api.vercel.app/api/message/Search?keyword=${encodeURIComponent(keyword)}`, // Sửa từ messages thành message
+        `${process.env.REACT_APP_BACKEND_URL}/message/Search?keyword=${encodeURIComponent(keyword)}`, // Sửa từ messages thành message
         {
           method: 'GET',
           credentials: 'include'

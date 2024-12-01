@@ -6,7 +6,7 @@ let socketInstance = null;
 export const socketService = {
   init(userId, dispatch) {
     if (!socketInstance) {
-      socketInstance = io('https://s1-api.vercel.app', {
+      socketInstance = io(`${process.env.REACT_APP_SOCKET_URL}`, {
         query: { userId },
         autoConnect: true,
         reconnection: true,

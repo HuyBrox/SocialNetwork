@@ -23,7 +23,7 @@ export function Call({ selectedChat }) {
     if (!senderId) return;
 
     // Khởi tạo socket.io
-    socketRef.current = io('https://s1-api.vercel.app', {
+    socketRef.current = io(`${process.env.REACT_APP_SOCKET_URL}`, {
       query: { userId: senderId },
       autoConnect: true,
     });

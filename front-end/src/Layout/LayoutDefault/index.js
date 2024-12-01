@@ -102,7 +102,7 @@ export default function LayoutDefault() {
         throw new Error('User ID not found');
       }
 
-      const response = await fetch(`https://s1-api.vercel.app/api/user/${id}/profile`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${id}/profile`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -171,7 +171,7 @@ export default function LayoutDefault() {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('https://s1-api.vercel.app/api/user/logout', {
+      const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/user/logout', {
         method: 'GET',
         credentials: 'include',
       });
@@ -316,7 +316,7 @@ export default function LayoutDefault() {
       label: 'Đăng xuất',
       onClick: handleLogout
     },
-  ], [selectedKey, handleLogout, handleProfileClick, profileData]);
+  ], [selectedKey, handleProfileClick, profileData]);
 
   return (
     <Layout className="LayoutDefault">

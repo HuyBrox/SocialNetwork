@@ -12,7 +12,7 @@ const PostDetail = () => {
   useEffect(() => {
     const fetchPostDetail = async () => {
       try {
-        const response = await fetch(`https://s1-api.vercel.app/api/post/getPost/${postId}`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/post/getPost/${postId}`, {
           method: 'GET',
           credentials: 'include',
         });

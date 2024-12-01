@@ -90,7 +90,7 @@ const Profile = () => {
     validateAndSetUserId();
   }, [userId, navigate]);
 
-   //  useEffect fetch profile
+  //  useEffect fetch profile
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true);
@@ -105,7 +105,7 @@ const Profile = () => {
 
         // Chỉ fetch nếu profile chưa được lấy hoặc khi userId khác với myUserId
         if (!hasFetchedProfile.current && (userId || youUserId !== myUserId)) {
-          const response = await fetch(`${config.API_HOST}/api/user/${youUserId}/profile`, {
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${youUserId}/profile`, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -261,7 +261,7 @@ const Profile = () => {
   const handleFollowToggle = async (targetUserId) => {
     try {
       const response = await fetch(
-        `https://s1-api.vercel.app/api/user/followorunfollow/${targetUserId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/user/followorunfollow/${targetUserId}`,
         {
           method: 'POST',
           credentials: 'include',
@@ -309,7 +309,7 @@ const Profile = () => {
       setIsAvatarUploading(true);
       setShowModal(false);
 
-      const response = await fetch(`https://s1-api.vercel.app/api/user/profile/edit`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/profile/edit`, {
         method: 'POST',
         body: formData,
         credentials: 'include',
@@ -339,14 +339,14 @@ const Profile = () => {
 
   const handleRemoveProfilePicture = async () => {
     try {
-      const response = await fetch(`https://s1-api.vercel.app/api/user/deleteAvatar`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/deleteAvatar`, {
         method: 'DELETE',
         credentials: 'include',
       });
 
       const data = await response.json();
       if (data.success) {
-        const profileResponse = await fetch(`https://s1-api.vercel.app/api/user/${userId}/profile`, {
+        const profileResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${userId}/profile`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -397,7 +397,7 @@ const Profile = () => {
       });
 
       const response = await fetch(
-        `https://s1-api.vercel.app/api/user/followorunfollow/${targetUserId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/user/followorunfollow/${targetUserId}`,
         {
           method: 'POST',
           credentials: 'include',
@@ -450,7 +450,7 @@ const Profile = () => {
         newFeaturedNote.content || '' :
         newFeaturedNote || '';
 
-      const response = await fetch('https://s1-api.vercel.app/api/user/featuredNote', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/featuredNote`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -718,7 +718,7 @@ const Profile = () => {
           }}
           onDelete={async () => {
             try {
-              await fetch('https://s1-api.vercel.app/api/user/featuredNote', {
+              await fetch('${process.env.REACT_APP_BACKEND_URL}/user/featuredNote', {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
