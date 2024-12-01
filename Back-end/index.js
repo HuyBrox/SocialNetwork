@@ -30,7 +30,7 @@ const corsOptions = {
     origin: ['http://localhost:3000', 'https://social-network-client-coral.vercel.app'],
     credentials: true,
 };
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Tích hợp PeerServer vào Express
 const peerServer = ExpressPeerServer(server, {
