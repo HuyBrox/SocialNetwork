@@ -164,8 +164,12 @@ export const login = async (req, res) => {
         }
         //Tạo token - tham số đầu tiên là payload, tham số thứ 2 là secret key
         const token = await jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+       
         console.log(token);
         return res.cookie("token", token, {
+            // ,'https://social-network-client2-afhz500ut-huy-s-projects-492df757.vercel.app']
+            domain:  'https://social-network-client2.vercel.app',
+            path: '/',
             httpOnly: true,     //cookie không thể được truy cập bằng mã JavaScript
             secure: true,       //cookie chỉ được gửi khi có https
             sameSite: "None",  //cookie chỉ được gửi khi có cùng domain
