@@ -83,7 +83,7 @@ export default function LoginRegister() {
       } else {
         localStorage.setItem('username', data.user.username);
         localStorage.setItem('_id', data.user._id);
-        Cookies.set('token', data.token, { expires: 7 });
+        // Cookies.set('token', data.token, { expires: 7 });
         setLoginError('');
         navigate("/");
       }
